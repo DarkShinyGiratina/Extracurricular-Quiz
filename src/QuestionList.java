@@ -27,7 +27,6 @@ public class QuestionList {
 		};
 		questionList.add(generateQuestion(q2Question, q2Answers, q2Weights));
 
-		// WEIGHTS IN ORDER: art,writing,theater,building,math,science,computers,soc
 		String q3Question = "What do you like to do in your free time?";
 		String[] q3Answers = {"Research interesting topics", "Watch TV/Youtube/Netflix", "Create things (drawing, writing stories, etc.)", "Read"};
 		int[][] q3Weights = {
@@ -37,12 +36,18 @@ public class QuestionList {
 						{0, 0, 0, 0, 0, 0, 20, 20}
 		};
 		questionList.add(generateQuestion(q3Question, q3Answers, q3Weights));
+
+		// WEIGHTS IN ORDER: art,writing,theater,building,math,science,computers,soc
+
 	}
 
-	public static ArrayList<Question> getList() {
-		return questionList;
-	}
-
+	/**
+	 * Generates a question, given an array of answers and weights.
+	 * @param q The question itself.
+	 * @param answers An array of answer choices.
+	 * @param weights A 2-D Array where the outer array corresponds to choices, and the inner arrays correspond to weights for each category.
+	 * @return
+	 */
 	private Question generateQuestion(String q, String[] answers, int[][] weights) {
 		HashMap<String, int[]> choices = new HashMap<>(Subjects.NUMBER_OF_SUBJECTS);
 		for (int i = 0; i < answers.length; i++) {
@@ -51,4 +56,7 @@ public class QuestionList {
 		return new Question(q, choices);
 	}
 
+	public static ArrayList<Question> getList() {
+		return questionList;
+	}
 }
