@@ -1,5 +1,10 @@
+/**
+ * Represents a list of questions for the EC quiz.
+ *
+ * @author Ross Williams
+ */
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class QuestionList {
@@ -37,8 +42,46 @@ public class QuestionList {
 		};
 		questionList.add(generateQuestion(q3Question, q3Answers, q3Weights));
 
-		// WEIGHTS IN ORDER: art,writing,theater,building,math,science,computers,soc
 
+
+		String q4Question = "True or False: You prefer high-stakes competitions over low-stakes/relaxing activities.";
+		String[] q4Answers = {"True", "False"};
+		int[][] q4Weights = {
+						{0, 0, 0, 10, 10, 10, 0, 10},
+						{10, 10, 10, 0, 0, 0, 10, 0}
+		};
+		questionList.add(generateQuestion(q4Question, q4Answers, q4Weights));
+
+
+		String q5Question = "Do you prefer working alone/with a small group or in a team?";
+		String[] q5Answers = {"Alone/Small groups for me!", "With a team!"};
+		int[][] q5Weights = {
+						{10, 10, 0, 0, 10, 0, 10, 0},
+						{0, 0, 10, 10, 0, 10, 0, 10}
+		};
+		questionList.add(generateQuestion(q5Question, q5Answers, q5Weights));
+
+		String q6Question = "How do you learn best?";
+		String[] q6Answers = {"Watching an example", "Doing something practical", "Reading instructions", "Thinking of my own way to understand a topic"};
+		int[][] q6Weights = {
+						{10, 10, 20, 0, 0, 0, 0, 0},
+						{10, 10, 0, 20, 0, 0, 0, 0},
+						{0, 0, 0, 0, 20, 20, 0, 0},
+						{0, 0, 0, 0, 0, 0, 20, 20}
+		};
+
+		questionList.add(generateQuestion(q6Question, q6Answers, q6Weights));
+
+		String q7Question = "How much time are you willing to commit per week to an activity?";
+		String[] q7Answers = {"0-3 hours", "4-7 hours", "8-10 hours", "10+ hours"};
+		int[][] q7Weights = {
+						{20, 20, 0, 0, 0, 0, 0, 0},
+						{0, 0, 0, 0, 10, 0, 20, 10},
+						{0, 0, 20, 20, 0, 0, 0, 0},
+						{0, 0, 0, 20, 0, 10, 10, 0}
+		};
+
+		questionList.add(generateQuestion(q7Question,q7Answers,q7Weights));
 	}
 
 	/**

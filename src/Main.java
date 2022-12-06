@@ -1,7 +1,12 @@
+/**
+ * An extracurricular quiz for Comet!
+ *
+ * @author Ross Williams
+ */
+
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;

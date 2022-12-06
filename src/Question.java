@@ -20,7 +20,7 @@ public class Question {
 	/**
 	 * Adjusts the weighting of an overall map based on the chosen answer.
 	 *
-	 * @param overallWeights The map containing an overall sum of weights.
+	 * @param overallWeights The array containing an overall sum of weights.
 	 */
 	public void adjustWeights(int[] overallWeights) {
 		if (selectedAnswer == null) {

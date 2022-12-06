@@ -1,6 +1,7 @@
-/*
-Subjects.java
-An enum which contains all the different subjects that the quiz can weight.
+/**
+ * An enum containing a mapping for every subject that is weighted.
+ *
+ * @author Ross Williams
  */
 public enum Subjects {
 	ART(0),
