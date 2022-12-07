@@ -43,7 +43,7 @@ public class Main {
 		menuPanel.add(description, BorderLayout.CENTER);
 
 		// Add the buttons
-		menuPanel.add(generateButtonPanel(tabbedPane, null), BorderLayout.PAGE_END);
+		menuPanel.add(generateButtonPanel(tabbedPane, null, null), BorderLayout.PAGE_END);
 		// Add the panel to the tabbed pane
 		tabbedPane.add(menuPanel);
 
@@ -90,7 +90,7 @@ public class Main {
 		instructionsAndButtonPanel.add(resultsButton);
 
 		resultsPanel.add(instructionsAndButtonPanel, BorderLayout.CENTER);
-		resultsPanel.add(generateButtonPanel(tabbedPane, null), BorderLayout.PAGE_END);
+		resultsPanel.add(generateButtonPanel(tabbedPane, null, null), BorderLayout.PAGE_END);
 
 		tabbedPane.add(resultsPanel);
 
@@ -173,7 +173,7 @@ public class Main {
 		if (maxWeightIndex == Subjects.ART.INDEX) {
 			topResult.setText("Your top result was art! Consider joining clubs related to your favorite artistic passions, be it origami, painting, or anything else! Stage crew is a great choice, if your school has a theater department! If your school doesn't have a club for your favorite art, try making one! Colleges like students with the initiative to form their own clubs.");
 		} else if (maxWeightIndex == Subjects.WRITING.INDEX) {
-			topResult.setText("Your top result was writing! Try joining the school newspaper, or a creative writing club!");
+			topResult.setText("Your top result was writing! Try joining the school newspaper, the school magazine, or a creative writing club! If your school has a film club, that could also be a great option!");
 		} else if (maxWeightIndex == Subjects.THEATER.INDEX) {
 			topResult.setText("Your top result was theater! If your school has a theater department, audition! You might land great parts, and theater is a great thing to have on your application! If your school doesn't have a theater department, see if you can create student performance clubs like an a-capella group or an improv troupe!");
 		} else if (maxWeightIndex == Subjects.BUILDING.INDEX) {
@@ -192,7 +192,7 @@ public class Main {
 		if (secondMaxWeightIndex == Subjects.ART.INDEX) {
 			secondResult.setText("Your second result was art! Consider joining clubs related to your favorite artistic passions, be it origami, painting, or anything else! Stage crew is a great choice, if your school has a theater department!");
 		} else if (secondMaxWeightIndex == Subjects.WRITING.INDEX) {
-			secondResult.setText("Your second result was writing! Try joining the school newspaper, or a creative writing club!");
+			secondResult.setText("Your second result was writing! Try joining the school newspaper, the school magazine, or a creative writing club! If your school has a film club, that could also be a great option!");
 		} else if (secondMaxWeightIndex == Subjects.THEATER.INDEX) {
 			secondResult.setText("Your second result was theater! If your school has a theater department, audition! You might land great parts, and theater is a great thing to have on your application! If your school doesn't have a theater department, see if you can join or create student performance clubs like an a-capella group or an improv troupe!");
 		} else if (secondMaxWeightIndex == Subjects.BUILDING.INDEX) {
@@ -251,7 +251,7 @@ public class Main {
 		JPanel answersPanel = new JPanel();
 		answersPanel.setLayout(new BoxLayout(answersPanel, BoxLayout.PAGE_AXIS));
 
-		JLabel selectedChoice = new JLabel("You haven't selected an answer!");
+		JLabel selectedChoice = new JLabel("");
 		selectedChoice.setAlignmentX(Component.CENTER_ALIGNMENT);
 		selectedChoice.setFont(selectedChoice.getFont().deriveFont(20f));
 		answersPanel.add(selectedChoice);
@@ -272,7 +272,7 @@ public class Main {
 
 		answersPanel.add(answerButtonsPanel);
 		qPanel.add(answersPanel, BorderLayout.CENTER);
-		qPanel.add(generateButtonPanel(pane, q),BorderLayout.PAGE_END);
+		qPanel.add(generateButtonPanel(pane, q, selectedChoice),BorderLayout.PAGE_END);
 		return qPanel;
 	}
 
@@ -280,9 +280,10 @@ public class Main {
 	 * Generate a "next" and "previous" button within a tabbed pane for a specific question's panel.
 	 * @param tabbedPane The pane you're adding to (needed to check tab indices)
 	 * @param q The question the buttons are sharing a panel with (needed to check if there's been an answer yet)
+	 * @param answerText The text which tells the user what answer they selected, updates if they click "next" too soon.
 	 * @return
 	 */
-	private static JPanel generateButtonPanel(JTabbedPane tabbedPane, Question q) {
+	private static JPanel generateButtonPanel(JTabbedPane tabbedPane, Question q, JLabel answerText) {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
 		JButton next = new JButton("Next Page");
@@ -290,6 +291,7 @@ public class Main {
 		// Add page button listeners to handle swapping tabs.
 		next.addActionListener(e -> {
 			if (q != null && q.getSelectedAnswer() == null) { // If they haven't selected an answer yet, don't do anything.
+				answerText.setText("You haven't selected an answer!");
 				return;
 			}
 			if (tabbedPane.getSelectedIndex() != tabbedPane.getTabCount() - 1) { // If advancing to the next page won't make us go out of bounds
